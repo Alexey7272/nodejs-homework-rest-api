@@ -1,21 +1,21 @@
 const express = require('express');
 const contactsConroller = require('../../controllers/contacts');
-const {isValidId} = require('../../middlewares/index');
+const {isValidId, authenticate} = require('../../middlewares/index');
 
 const router = express.Router();
 
 
-router.get('/', contactsConroller.listContacts);
+router.get('/', authenticate, contactsConroller.listContacts);
 
-router.get('/:contactId', isValidId, contactsConroller.getContactById);
+router.get('/:contactId', authenticate, isValidId, contactsConroller.getContactById);
 
-router.post('/', contactsConroller.addContact);
+router.post('/', authenticate, contactsConroller.addContact);
 
-router.delete('/:contactId', isValidId, contactsConroller.removeContact)
+router.delete('/:contactId', authenticate, isValidId, contactsConroller.removeContact)
 
-router.put('/:contactId', isValidId, contactsConroller.updateContact)
+router.put('/:contactId', authenticate, isValidId, contactsConroller.updateContact)
 
-router.patch('/:contactId/favorite', isValidId, contactsConroller.updateFavorite)
+router.patch('/:contactId/favorite', authenticate, isValidId, contactsConroller.updateFavorite)
 
 
 module.exports = router;
