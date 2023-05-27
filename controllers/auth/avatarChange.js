@@ -3,7 +3,6 @@ const fs = require('fs/promises');
 const { User } = require('../../models/user');
 
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
-console.log(avatarsDir)
 
 const avatarChange = async(req, res) => {
     const {_id} = req.user;
